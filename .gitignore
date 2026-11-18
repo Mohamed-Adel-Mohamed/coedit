@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.next/
+out/
+coverage/
+.env
+.env.local
+.devdata/
+*.log
+.DS_Store
+*.tsbuildinfo
+apps/web/AGENTS.md

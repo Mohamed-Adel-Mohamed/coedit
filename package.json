@@ -1,0 +1,36 @@
+{
+  "name": "coedit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CoEdit — real-time collaborative markdown workspace",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=20.9"
+  },
+  "scripts": {
+    "dev": "npm run build:shared && concurrently -k -n server,web -c cyan,magenta \"npm run dev -w @coedit/server\" \"npm run dev -w @coedit/web\"",
+    "dev:server": "npm run dev -w @coedit/server",
+    "dev:web": "npm run dev -w @coedit/web",
+    "build": "npm run build:shared && npm run build -w @coedit/server && npm run build -w @coedit/web",
+    "build:shared": "npm run build -w @coedit/shared",
+    "start:server": "npm run start -w @coedit/server",
+    "start:web": "npm run start -w @coedit/web",
+    "migrate": "npm run migrate -w @coedit/server",
+    "seed": "npm run seed -w @coedit/server",
+    "test": "npm run build:shared && npm run test -w @coedit/server",
+    "test:ui": "node scripts/verify-ui.mjs",
+    "screenshots": "node scripts/capture-screenshots.mjs",
+    "typecheck": "npm run build:shared && npm run typecheck -w @coedit/server && npm run typecheck -w @coedit/web",
+    "db:start": "bash scripts/dev-db.sh start",
+    "db:stop": "bash scripts/dev-db.sh stop",
+    "db:reset": "bash scripts/dev-db.sh reset"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "playwright-core": "^1.65.0",
+    "typescript": "^5.9.3"
+  }
+}
